@@ -45,6 +45,19 @@ func FindFunctionsStripped(elfF *elf.File, relevantFuncs map[string]any) ([]*Fun
 		return nil, errors.New("invalid pointer size of text section of .gopclntab")
 	}
 
+	// Go no longer stores textStart in the pcHeader: the field is retained
+	// only for compatibility and can be zero. gosym needs a text base to
+	// convert function entry offsets to virtual addresses. For an ELF
+	// executable, use the .text section address when that legacy field is
+	// empty.
+	if runtimeText == 0 {
+		text := elfF.Section(".text")
+		if text == nil {
+			return nil, errors.New(".text section not found in target binary")
+		}
+		runtimeText = text.Addr
+	}
+
 	pcln := gosym.NewLineTable(pclndat, runtimeText)
 	symTab, err := gosym.NewTable(nil, pcln)
 	if err != nil {
