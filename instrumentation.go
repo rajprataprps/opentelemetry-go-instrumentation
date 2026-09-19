@@ -24,8 +24,8 @@ import (
 	autosdk "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/go.opentelemetry.io/auto/sdk"
 	otelTrace "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/go.opentelemetry.io/otel/trace"
 	otelTraceGlobal "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/go.opentelemetry.io/otel/traceglobal"
-	grpcClient "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/google.golang.org/grpc/client"
-	grpcServer "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/google.golang.org/grpc/server"
+	//grpcClient "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/google.golang.org/grpc/client"
+	//grpcServer "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/google.golang.org/grpc/server"
 	httpClient "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/net/http/client"
 	httpServer "go.opentelemetry.io/auto/internal/pkg/instrumentation/bpf/net/http/server"
 	"go.opentelemetry.io/auto/internal/pkg/instrumentation/probe"
@@ -66,8 +66,8 @@ func NewInstrumentation(
 	}
 
 	p := []probe.Probe{
-		grpcClient.New(c.logger, Version()),
-		grpcServer.New(c.logger, Version()),
+		//grpcClient.New(c.logger, Version()),
+		//grpcServer.New(c.logger, Version()),
 		httpServer.New(c.logger, Version()),
 		httpClient.New(c.logger, Version()),
 		dbSql.New(c.logger, Version()),
