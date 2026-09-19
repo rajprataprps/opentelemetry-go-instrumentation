@@ -37,4 +37,4 @@ CMD ["/otel-go-instrumentation"]
 
 
 # Build This Docker Image
-# export LOCAL_IMAGE=647393176028.dkr.ecr.us-east-1.amazonaws.com/security-director-docker/observability/otel-go-instrumentation:go1.xx.x && docker buildx build --platform linux/amd64 --load --tag "$LOCAL_IMAGE" .
+# export LOCAL_IMAGE=otel-autoinstrumentation-go:go1.xx.x && docker buildx build --platform linux/amd64 --load --tag "$LOCAL_IMAGE" .
