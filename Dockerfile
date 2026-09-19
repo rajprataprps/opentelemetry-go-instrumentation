@@ -34,3 +34,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 FROM gcr.io/distroless/base-debian12@sha256:fabbf1c0c357a3d42550111351daed089b20a2c954df13ee2fcff60602515e84
 COPY --from=builder /usr/src/go.opentelemetry.io/auto/otel-go-instrumentation /
 CMD ["/otel-go-instrumentation"]
+
+
+# Build This Docker Image
+# export LOCAL_IMAGE=647393176028.dkr.ecr.us-east-1.amazonaws.com/security-director-docker/observability/otel-go-instrumentation:go1.xx.x && docker buildx build --platform linux/amd64 --load --tag "$LOCAL_IMAGE" .
